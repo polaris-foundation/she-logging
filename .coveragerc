@@ -1,0 +1,13 @@
+[paths]
+source =
+    she_logging/*
+
+[report]
+omit =
+    **/__init__.py
+    **/__main__.py
+
+fail_under = 80
+
+show_missing = true
+skip_covered = true

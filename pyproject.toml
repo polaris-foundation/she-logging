@@ -1,0 +1,65 @@
+[tool.poetry]
+name = "she-logging"
+version = "1.4.0"
+description = "Common logging configuration for Sensyne Health microservices"
+authors = ["Duncan Booth <duncan.booth@sensynehealth.com>"]
+keywords = ["DHOS", "Platform", "Logging"]
+repository = "https://github.com/draysontechnologies/she-logging"
+
+[[tool.poetry.source]]
+name = "sensynehealth"
+url = "https://pypi.fury.io/sensynehealth/"
+
+[tool.poetry.dependencies]
+python = ">=3.6.9,<4.0"
+environs = "*"
+JSON-log-formatter = "0.*"
+contextvars = { version = "2.*", python = "3.6.*" }
+PyYAML = "5.*"
+rich = { version="10.*", optional=true }
+
+[tool.poetry.dev-dependencies]
+bandit = "*"
+black = "*"
+coverage = "*"
+Flask = "2.*"
+isort = "*"
+mock = "*"
+mypy = "*"
+pytest = "5.*"
+pytest-cov = "*"
+pytest-flask = "*"
+pytest-mock = "*"
+safety = "*"
+tox = "*"
+fastapi = "0.*"
+uvicorn = {version = "*", extras=["standard"]}
+gunicorn = "*"
+types-contextvars = "*"
+types-PyYAML = "*"
+Flask-Log-Request-ID = "*"
+
+[tool.poetry.plugins."gunicorn.loggers"]
+"gunicorn"="she_logging.gunicorn_logger:Logger"
+
+[tool.poetry.extras]
+colour = ["rich"]
+
+[tool.mypy]
+namespace_packages=true
+ignore_missing_imports=false
+disallow_untyped_defs=true
+
+[[tool.mypy.overrides]]
+module = [
+"json_log_formatter","flask_log_request_id","environs","pytest","_pytest.*","coloredlogs","gunicorn","uvicorn","flask.*"
+]
+ignore_missing_imports = true
+
+[tool.isort]
+profile = "black"
+known_third_party = ["_pytest", "environs", "fastapi", "flask", "flask_log_request_id", "gunicorn", "json_log_formatter", "pytest", "pytest_mock", "starlette", "toml", "uvicorn", "yaml"]
+
+[tool.black]
+line-length = 88
+target-version = ["py39"]
