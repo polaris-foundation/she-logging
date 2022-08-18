@@ -1,9 +1,9 @@
 [tool.poetry]
 name = "she-logging"
 version = "1.4.0"
-description = "Common logging configuration for Sensyne Health microservices"
+description = "Common logging configuration for Polaris microservices"
 authors = ["Duncan Booth <duncan.booth@sensynehealth.com>"]
-keywords = ["DHOS", "Platform", "Logging"]
+keywords = ["Polaris", "Platform", "Logging"]
 repository = "https://github.com/draysontechnologies/she-logging"
 
 [[tool.poetry.source]]
