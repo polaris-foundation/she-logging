@@ -1,3 +1,7 @@
+1.4.1
+=====
+Move hosting to public pypi
+
 1.4.0
 =====
 Use `rich` for coloured logging instead of coloredlogs
