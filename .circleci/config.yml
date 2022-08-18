@@ -27,12 +27,12 @@ jobs:
           fingerprints:
             - "14:6f:b0:83:68:f7:5d:67:2a:b3:40:50:a7:3c:c0:ec"
       - checkout
-      # - run:
-      #     name: Publish package to pypi
-      #     command: poetry publish --build --username __token__ --password $PYPI_API_TOKEN
+      - run:
+          name: Publish package to pypi
+          command: poetry publish --build --username __token__ --password $PYPI_API_TOKEN
       - run:
           name: Create git tag
-          command: git tag v$(python3 .circleci/parse_version.py)
+          command: pip install -U toml && git tag v$(python3 .circleci/parse_version.py)
       - run:
           name: Push git tag
           command: git push --tags
@@ -50,4 +50,3 @@ workflows:
             branches:
               only:
                 - main
-                - setup-cicd
