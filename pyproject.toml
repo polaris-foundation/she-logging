@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "she-logging"
-version = "1.4.0"
+version = "1.4.1"
 description = "Common logging configuration for Polaris microservices"
 authors = ["Duncan Booth <duncan.booth@sensynehealth.com>"]
 keywords = ["Polaris", "Platform", "Logging"]
