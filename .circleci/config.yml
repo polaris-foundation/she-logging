@@ -26,10 +26,7 @@ jobs:
       - checkout
       - run:
           name: Publish package to pypi
-          command: |
-            pip install --upgrade toml
-            poetry build
-            poetry publish --build --username __token__ --password $PYPI_API_TOKEN
+          command: poetry publish --build --username __token__ --password $PYPI_API_TOKEN
       - run:
           name: Create git tag
           command: git tag v$(python3 .circleci/parse_version.py)
