@@ -6,9 +6,6 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Create coverage report dir
-          command: mkdir -p ${COVERAGE_REPORT_DIR}
-      - run:
           name: Set up tox tests
           command: pip install --upgrade tox
       - restore_cache:
@@ -22,21 +19,15 @@ jobs:
           key: v1-poetry-deps-{{ checksum "poetry.lock" }}
           paths:
             - .tox
-      - persist_to_workspace:
-          root: coverage-reports
-          paths:
-            - coverage.xml
   publish-pypi:
     docker:
       - image: cimg/python:3.9
     steps:
       - checkout
       - run:
-          name: Install deps
-          command: pip install --upgrade toml
-      - run:
           name: Publish package to pypi
           command: |
+            pip install --upgrade toml
             poetry build
             poetry publish --build --username __token__ --password $PYPI_API_TOKEN
       - run:
